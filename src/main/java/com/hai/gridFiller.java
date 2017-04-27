@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 /**
  * Created by huseyin on 04.04.2017.
+ *
+ * assuming this grid filler will take a list with size of the clue number as answer fields consisting of filed
+ * and an arraylist of arraylist of words that has the list of guess of the program to the corresponding clues the first list is the
+ * first guesslist to the clue 1 etc
  */
 
 public class gridFiller {
@@ -19,8 +23,7 @@ public class gridFiller {
 
     public  void fillGrid() {
 
-        ArrayList<Grid>  possibleGrids= new ArrayList<Grid>();
-
+        Grid gridWithMaxScore = new Grid(answerFields);
         // create a tentative solution from the possible answers
         // reject the çakışan answers
 
@@ -32,13 +35,18 @@ public class gridFiller {
         baseNIndex index = new baseNIndex(indexBase,digitNumber);
         ArrayList<Word> elements = new ArrayList<Word>();
         for(int j = 0;j < limit;j++){
-
             elements = getElements(index);
+            Grid curGrid = new Grid(answerFields,elements);
+            if(curGrid.isPossible() && curGrid.getScore() > gridWithMaxScore.getScore())
+            {
+                gridWithMaxScore = curGrid;
+            }
             index.increment();
         }
 
 
     }
+    // this method is used to get the words at indicies given by the Base N index number to a list
     public ArrayList <Word>getElements(baseNIndex index){
         ArrayList<Word> elements = new ArrayList<Word>();
         for(int i = 0; i <listOfAnswerLists.size();i++ ){

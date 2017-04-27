@@ -1,6 +1,9 @@
 package com.hai;
 /**
  * Created by mrsfy on 04-Apr-17.
+ *
+ * field class, every answer has a field in the puzzle, this field has start index end index field type etc, start index and
+ * endindex are from 0 to size*size so linear conversion of the size by size matrix puzzle(size =10), some functionality are not used
  */
 public class Field {
 
@@ -71,6 +74,8 @@ public class Field {
         this.endIndex = endIndex;
     }
 
+
+/*
     public boolean checkFit( Word guess)
     {
         String guessStr = guess.getWord();
@@ -85,6 +90,7 @@ public class Field {
 
         return true;
     }
+    */
     public void clear(){
         String empty = "";
         for(int i = 0; i < word.getWord().length();i++)
@@ -94,4 +100,5 @@ public class Field {
         this.word.setWord(empty);
 
     }
+
 }
